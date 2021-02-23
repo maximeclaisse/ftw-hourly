@@ -22,6 +22,7 @@ import EditListingWizardTab, {
   AVAILABILITY,
   DESCRIPTION,
   FEATURES,
+  INSTRUMENTS,
   POLICY,
   LOCATION,
   PRICING,
@@ -41,6 +42,7 @@ const availabilityMaybe = config.enableAvailability ? [AVAILABILITY] : [];
 export const TABS = [
   DESCRIPTION,
   FEATURES,
+  INSTRUMENTS,
   //POLICY,
   LOCATION,
   PRICING,
@@ -60,6 +62,8 @@ const tabLabel = (intl, tab) => {
     key = 'EditListingWizard.tabLabelDescription';
   } else if (tab === FEATURES) {
     key = 'EditListingWizard.tabLabelFeatures';
+  } else if (tab === INSTRUMENTS) {
+    key = 'EditListingWizard.tabLabelInstruments';
   } else if (tab === POLICY) {
     key = 'EditListingWizard.tabLabelPolicy';
   } else if (tab === LOCATION) {
@@ -99,6 +103,8 @@ const tabCompleted = (tab, listing) => {
       return !!(description && title);
     case FEATURES:
       return !!(publicData && publicData.yogaStyles);
+    case INSTRUMENTS:
+      return !!(publicData && publicData.musicInstruments);
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
     case LOCATION:

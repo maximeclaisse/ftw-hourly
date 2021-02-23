@@ -117,6 +117,34 @@ export const filters = [
     },
   },
   {
+    id: 'musicInstruments',
+    label: 'Music instruments',
+    type: 'SelectMultipleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_musicInstruments'],
+    config: {
+      // Optional modes: 'has_all', 'has_any'
+      // https://www.sharetribe.com/api-reference/marketplace.html#extended-data-filtering
+      searchMode: 'has_all',
+
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for this web app's UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        { key: 'accordion', label: 'Accordion' },
+        { key: 'bass', label: 'Bass guitar' },
+        { key: 'guitar', label: 'Guitar' },
+        { key: 'drums', label: 'Drums' },
+        { key: 'piano', label: 'Piano' },
+        { key: 'trumpet', label: 'Trumpet' },
+        { key: 'voice', label: 'Voice' },
+        { key: 'violin', label: 'Violin' },
+        { key: 'saxophone', label: 'Saxophone' },
+      ],
+    },
+  },
+  {
     id: 'certificate',
     label: 'Certificate',
     type: 'SelectSingleFilter',

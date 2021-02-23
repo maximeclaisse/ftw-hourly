@@ -238,6 +238,13 @@
   "EditListingFeaturesPanel.createListingTitle": "What yoga styles do you teach?",
   "EditListingFeaturesPanel.listingTitle": "your sessions",
   "EditListingFeaturesPanel.title": "Edit the yoga styles of {listingTitle}",
+
+  "EditListingInstrumentsForm.showListingFailed": "Fetching teacher profile data failed",
+  "EditListingInstrumentsForm.updateFailed": "Failed to update profile. Please try again.",
+  "EditListingInstrumentsPanel.createListingTitle": "What instruments do you teach?",
+  "EditListingInstrumentsPanel.listingTitle": "your lessons",
+  "EditListingInstrumentsPanel.title": "Edit the instruments of {listingTitle}",
+
   "EditListingLocationForm.address": "Address",
   "EditListingLocationForm.addressNotRecognized": "We didn't recognize this location. Please try another location.",
   "EditListingLocationForm.addressPlaceholder": "123 Example Street",
@@ -305,6 +312,7 @@
   "EditListingWizard.saveNewPricing": "Next: Availability",
   "EditListingWizard.tabLabelDescription": "Description",
   "EditListingWizard.tabLabelFeatures": "Yoga styles",
+  "EditListingWizard.tabLabelInstruments": "Instruments",
   "EditListingWizard.tabLabelAvailability": "Availability",
   "EditListingWizard.tabLabelLocation": "Location",
   "EditListingWizard.tabLabelPhotos": "Photos",
