@@ -1,77 +1,72 @@
 import React from 'react';
-import { arrayOf, bool, func, shape, string } from 'prop-types';
-import { compose } from 'redux';
-import { Form as FinalForm } from 'react-final-form';
+import { bool, func, shape, string } from 'prop-types';
 import classNames from 'classnames';
-import {
-  intlShape,
-  injectIntl,
-  FormattedMessage,
-} from '../../util/reactIntl';
+import { Form as FinalForm } from 'react-final-form';
+import { FormSpy } from 'react-final-form';
+import arrayMutators from 'final-form-arrays';
+import { FormattedMessage } from '../../util/reactIntl';
+import { findOptionsForSelectFilter } from '../../util/search';
 import { propTypes } from '../../util/types';
-import { required } from '../../util/validators';
-import { Form, Button, FieldSelect } from '../../components';
+import config from '../../config';
+import { Button, FieldBoolean, FieldCheckboxGroup, Form } from '../../components';
 
-// Create this file using EditListingFeaturesForm.module.css
-// as a template.
 import css from './EditListingInstrumentsForm.module.css';
 
-export const EditListingInstrumentsFormComponent = props => (
+const EditListingInstrumentsFormComponent = props => (
   <FinalForm
     {...props}
-    render={fieldRenderProps => {
+    mutators={{ ...arrayMutators }}
+    render={formRenderProps => {
       const {
-        className,
         disabled,
+        ready,
+        rootClassName,
+        className,
+        name,
         handleSubmit,
-        intl,
-        invalid,
         pristine,
         saveActionMsg,
         updated,
-        updateError,
         updateInProgress,
-        instrumentsOptions,
-      } = fieldRenderProps;
+        fetchErrors,
+        filterConfig,
+      } = formRenderProps;
 
-      const instrumentsPlaceholder = intl.formatMessage({
-        id: 'EditListingInstrumentsForm.instrumentsPlaceholder',
-      });
+      const classes = classNames(rootClassName || css.root, className);
+      const submitReady = (updated && pristine) || ready;
+      const submitInProgress = updateInProgress;
+      const submitDisabled = disabled || submitInProgress;
 
-      const errorMessage = updateError ? (
+      const { updateListingError, showListingsError } = fetchErrors || {};
+      const errorMessage = updateListingError ? (
         <p className={css.error}>
           <FormattedMessage id="EditListingInstrumentsForm.updateFailed" />
         </p>
       ) : null;
 
-      const instrumentsRequired = required(
-        intl.formatMessage({
-          id: 'EditListingInstrumentsForm.instrumentsRequired',
-        })
-      );
+      const errorMessageShowListing = showListingsError ? (
+        <p className={css.error}>
+          <FormattedMessage id="EditListingInstrumentsForm.showListingFailed" />
+        </p>
+      ) : null;
 
-      const classes = classNames(css.root, className);
-      const submitReady = updated && pristine;
-      const submitInProgress = updateInProgress;
-      const submitDisabled = invalid || disabled || submitInProgress;
+      const instrumentProvidedName = "instrumentProvided"
+      const instrumentProvidedOptions = findOptionsForSelectFilter('instrumentProvided', filterConfig);
 
+
+      console.log(props)
+
+
+      const options = findOptionsForSelectFilter('musicInstruments', filterConfig);
       return (
         <Form className={classes} onSubmit={handleSubmit}>
           {errorMessage}
+          {errorMessageShowListing}
 
-          <FieldSelect
-            className={css.instruments}
-            name="instruments"
-            id="instruments"
-            validate={instrumentsRequired}
-          >
-            <option value="">{instrumentsPlaceholder}</option>
-            {instrumentsOptions.map(c => (
-              <option key={c.key} value={c.key}>
-                {c.label}
-              </option>
-            ))}
-          </FieldSelect>
+          <FieldCheckboxGroup className={css.instruments} id={name} name={name} options={options} />
+
+          <p>Instrument provided ?</p>
+          <FieldBoolean placeholder="Select a value" id={instrumentProvidedName} name={instrumentProvidedName} />
 
           <Button
             className={css.submitButton}
@@ -89,23 +84,29 @@ export const EditListingInstrumentsFormComponent = props => (
 );
 
 EditListingInstrumentsFormComponent.defaultProps = {
-  selectedPlace: null,
-  updateError: null,
+  rootClassName: null,
+  className: null,
+  fetchErrors: null,
+  filterConfig: config.custom.filters,
 };
 
 EditListingInstrumentsFormComponent.propTypes = {
-  intl: intlShape.isRequired,
+  rootClassName: string,
+  className: string,
+  name: string.isRequired,
   onSubmit: func.isRequired,
   saveActionMsg: string.isRequired,
+  disabled: bool.isRequired,
+  ready: bool.isRequired,
   updated: bool.isRequired,
-  updateError: propTypes.error,
   updateInProgress: bool.isRequired,
-  instrumentsOptions: arrayOf(
-    shape({
-      key: string.isRequired,
-      label: string.isRequired,
-    })
-  ).isRequired,
+  fetchErrors: shape({
+    showListingsError: propTypes.error,
+    updateListingError: propTypes.error,
+  }),
+  filterConfig: propTypes.filterConfig,
 };
 
-export default compose(injectIntl)(EditListingInstrumentsFormComponent);
+const EditListingInstrumentsForm = EditListingInstrumentsFormComponent;
+
+export default EditListingInstrumentsForm;

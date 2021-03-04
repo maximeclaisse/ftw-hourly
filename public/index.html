@@ -14,9 +14,9 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png">
-    <link rel="mask-icon" href="/static/icons/safari-pinned-tab.svg" color="#0095b3">
-    <link rel="shortcut icon" href="/static/icons/favicon.ico">
-    <meta name="msapplication-config" content="/static/icons/browserconfig.xml">
+    <link rel="manifest" href="/static/icons/site.webmanifest">
+    <link rel="mask-icon" href="/static/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <!-- End Favicons -->
 
@@ -26,8 +26,68 @@
 
     <style>
      /**
-      * Poppins font is downloaded from Google Fonts but served from sharetribe.com / CDN
+      * Poppins font is downloaded from Google Fonts but served from sharetribe.com / CDN*
       */
+
+      
+
+      @font-face {
+        /* 'Roboto-Regular' */
+        font-family: 'roboto';
+        src: url('../src/assets/fonts/Roboto-Regular.ttf') format('truetype');
+        font-weight: 400; /* Regular */
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'roboto';
+        src: url('/fonts/Roboto-Medium.ttf') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'roboto';
+        src: url('/fonts/Roboto-MediumItalic.ttf') format('truetype');
+        font-weight: 500;
+        font-style: italic;
+      }
+
+      @font-face {
+        font-family: 'roboto';
+        src: url('/fonts/Roboto-SemiBold.ttf') format('truetype');
+        font-weight: 600;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'roboto';
+        src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'monument extended';
+        src: url('/fonts/MonumentExtended-Regular.otf') format('opentype');
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'monument extended';
+        src: url('/fonts/MonumentExtended-Ultrabold.otf') format('opentype');
+        font-weight: 800;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'work sans';
+        src: url('/fonts/WorkSans-VariableFont_wght.ttf') format('opentype');
+        font-weight: 900;
+        font-style: normal;
+      }
+
 
       @font-face {
         /* 'Poppins-Regular' */
@@ -116,13 +176,27 @@
         var poppinsSemibold = new FontFaceObserver('poppins', { weight: 600 });
         var poppinsBold = new FontFaceObserver('poppins', { weight: 700 });
 
+        var robotoRegular = new FontFaceObserver('roboto', { weight: 400 });
+        var robotoMedium = new FontFaceObserver('roboto', { weight: 500 });
+        var robotoSemibold = new FontFaceObserver('roboto', { weight: 600 });
+        var robotoBold = new FontFaceObserver('roboto', { weight: 700 });
+
+        var monumentRegular = new FontFaceObserver('monument', { weight: 400 });
+        var rmonumentBold = new FontFaceObserver('monument', { weight: 700 });
+
         var fontLoadingTimeout = 5000;
 
         Promise.all([
           poppinsRegular.load(null, fontLoadingTimeout),
           poppinsMedium.load(null, fontLoadingTimeout),
           poppinsSemibold.load(null, fontLoadingTimeout),
-          poppinsBold.load(null, fontLoadingTimeout)
+          poppinsBold.load(null, fontLoadingTimeout),
+          robotoRegular.load(null, fontLoadingTimeout),
+          robotoMedium.load(null, fontLoadingTimeout),
+          robotoSemibold.load(null, fontLoadingTimeout),
+          robotoBold.load(null, fontLoadingTimeout),
+          monumentRegular.load(null, fontLoadingTimeout),
+          rmonumentBold.load(null, fontLoadingTimeout)
         ])
           .then(function () {
             document.documentElement.classList.add("fontsLoaded");

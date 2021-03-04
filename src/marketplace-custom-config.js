@@ -74,15 +74,15 @@ export const filters = [
     // Note: unlike most prices this is not handled in subunits
     config: {
       min: 0,
-      max: 1000,
-      step: 5,
+      max: 100,
+      step: 1,
     },
   },
   {
     id: 'keyword',
     label: 'Keyword',
     type: 'KeywordFilter',
-    group: 'primary',
+    group: 'secondary',
     // Note: KeywordFilter is fixed filter,
     // you can't change "queryParamNames: ['keywords'],"
     queryParamNames: ['keywords'],
@@ -120,12 +120,12 @@ export const filters = [
     id: 'musicInstruments',
     label: 'Music instruments',
     type: 'SelectMultipleFilter',
-    group: 'secondary',
+    group: 'primary',
     queryParamNames: ['pub_musicInstruments'],
     config: {
       // Optional modes: 'has_all', 'has_any'
       // https://www.sharetribe.com/api-reference/marketplace.html#extended-data-filtering
-      searchMode: 'has_all',
+      searchMode: 'has_any',
 
       // "key" is the option you see in Flex Console.
       // "label" is set here for this web app's UI only.
@@ -156,9 +156,49 @@ export const filters = [
       // Note: label is not added through the translation files
       // to make filter customizations a bit easier.
       options: [
-        { key: 'none', label: 'None', hideFromFilters: true, hideFromListingInfo: true },
-        { key: '200h', label: 'Registered yoga teacher 200h' },
-        { key: '500h', label: 'Registered yoga teacher 500h' },
+        // { key: 'none', label: 'None', hideFromFilters: true, hideFromListingInfo: true },
+        // { key: '200h', label: 'Registered yoga teacher 200h' },
+        // { key: '500h', label: 'Registered yoga teacher 500h' },
+        { key: 'individual', label: 'Amateur' },
+        { key: 'pro', label: 'Professional musician' },
+        { key: 'teacher', label: 'Registered teacher' },
+      ],
+    },
+  },
+  {
+    id: 'level',
+    label: 'Level',
+    type: 'SelectMultipleFilter',
+    group: 'primary',
+    queryParamNames: ['pub_level'],
+    config: {
+      searchMode: 'has_any',
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for the UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        { key: 'beginner', label: 'Beginner' },
+        { key: 'intermediate', label: 'Intermediate' },
+        { key: 'advanced', label: 'Advanced' },
+        { key: 'pro', label: 'Professional' },
+      ],
+    },
+  },
+  {
+    id: 'instrumentProvided',
+    label: 'Instrument Provided',
+    type: 'SelectSingleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_instrumentProvided'],
+    config: {
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for the UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        { key: true, label: 'Yes' },
+        { key: false, label: 'No' },
       ],
     },
   },

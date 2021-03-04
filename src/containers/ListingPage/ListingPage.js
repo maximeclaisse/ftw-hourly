@@ -55,6 +55,8 @@ import SectionAvatar from './SectionAvatar';
 import SectionHeading from './SectionHeading';
 import SectionDescriptionMaybe from './SectionDescriptionMaybe';
 import SectionFeaturesMaybe from './SectionFeaturesMaybe';
+import SectionInstrumentsMaybe from './SectionInstrumentsMaybe';
+import SectionLevelMaybe from './SectionLevelMaybe';
 import SectionReviews from './SectionReviews';
 import SectionMapMaybe from './SectionMapMaybe';
 import css from './ListingPage.module.css';
@@ -384,7 +386,9 @@ export class ListingPageComponent extends Component {
     );
 
     const yogaStylesOptions = findOptionsForSelectFilter('yogaStyles', filterConfig);
+    const instrumentsOptions = findOptionsForSelectFilter('musicInstruments', filterConfig);
     const certificateOptions = findOptionsForSelectFilter('certificate', filterConfig);
+    const levelOptions = findOptionsForSelectFilter('level', filterConfig);
 
     return (
       <Page
@@ -436,7 +440,9 @@ export class ListingPageComponent extends Component {
                     onContactUser={this.onContactUser}
                   />
                   <SectionDescriptionMaybe description={description} />
-                  <SectionFeaturesMaybe options={yogaStylesOptions} publicData={publicData} />
+                  {/* <SectionFeaturesMaybe options={yogaStylesOptions} publicData={publicData} /> */}
+                  <SectionInstrumentsMaybe options={instrumentsOptions} publicData={publicData} />
+                  <SectionLevelMaybe options={levelOptions} publicData={publicData} />
                   <SectionMapMaybe
                     geolocation={geolocation}
                     publicData={publicData}

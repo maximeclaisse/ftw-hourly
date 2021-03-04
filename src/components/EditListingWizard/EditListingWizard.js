@@ -21,8 +21,9 @@ import { StripeConnectAccountForm } from '../../forms';
 import EditListingWizardTab, {
   AVAILABILITY,
   DESCRIPTION,
-  FEATURES,
+  // FEATURES,
   INSTRUMENTS,
+  LEVEL,
   POLICY,
   LOCATION,
   PRICING,
@@ -41,8 +42,9 @@ const availabilityMaybe = config.enableAvailability ? [AVAILABILITY] : [];
 // If you want to add a free text field to your listings you can enable the POLICY tab
 export const TABS = [
   DESCRIPTION,
-  FEATURES,
+  // FEATURES,
   INSTRUMENTS,
+  LEVEL,
   //POLICY,
   LOCATION,
   PRICING,
@@ -60,10 +62,12 @@ const tabLabel = (intl, tab) => {
   let key = null;
   if (tab === DESCRIPTION) {
     key = 'EditListingWizard.tabLabelDescription';
-  } else if (tab === FEATURES) {
-    key = 'EditListingWizard.tabLabelFeatures';
+  // } else if (tab === FEATURES) {
+  //   key = 'EditListingWizard.tabLabelFeatures';
   } else if (tab === INSTRUMENTS) {
     key = 'EditListingWizard.tabLabelInstruments';
+  } else if (tab === LEVEL) {
+    key = 'EditListingWizard.tabLabelLevel';
   } else if (tab === POLICY) {
     key = 'EditListingWizard.tabLabelPolicy';
   } else if (tab === LOCATION) {
@@ -105,6 +109,8 @@ const tabCompleted = (tab, listing) => {
       return !!(publicData && publicData.yogaStyles);
     case INSTRUMENTS:
       return !!(publicData && publicData.musicInstruments);
+    case LEVEL:
+      return !!(publicData && publicData.level);
     case POLICY:
       return !!(publicData && typeof publicData.rules !== 'undefined');
     case LOCATION:

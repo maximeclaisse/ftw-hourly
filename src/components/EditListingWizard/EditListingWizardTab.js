@@ -15,6 +15,7 @@ import {
   EditListingDescriptionPanel,
   EditListingFeaturesPanel,
   EditListingInstrumentsPanel,
+  EditListingLevelPanel,
   EditListingLocationPanel,
   EditListingPhotosPanel,
   EditListingPoliciesPanel,
@@ -27,6 +28,7 @@ export const AVAILABILITY = 'availability';
 export const DESCRIPTION = 'description';
 export const FEATURES = 'features';
 export const INSTRUMENTS = 'instruments';
+export const LEVEL = 'level';
 export const POLICY = 'policy';
 export const LOCATION = 'location';
 export const PRICING = 'pricing';
@@ -37,6 +39,7 @@ export const SUPPORTED_TABS = [
   DESCRIPTION,
   FEATURES,
   INSTRUMENTS,
+  LEVEL,
   POLICY,
   LOCATION,
   PRICING,
@@ -205,6 +208,20 @@ const EditListingWizardTab = props => {
       return (
         <EditListingInstrumentsPanel
           {...panelProps(INSTRUMENTS)}
+          submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
+          onSubmit={values => {
+            onCompleteEditListingWizardTab(tab, values);
+          }}
+        />
+      );
+    }
+    case LEVEL: {
+      const submitButtonTranslationKey = isNewListingFlow
+        ? 'EditListingWizard.saveNewLevel'
+        : 'EditListingWizard.saveEditLevel';
+      return (
+        <EditListingLevelPanel
+          {...panelProps(LEVEL)}
           submitButtonText={intl.formatMessage({ id: submitButtonTranslationKey })}
           onSubmit={values => {
             onCompleteEditListingWizardTab(tab, values);

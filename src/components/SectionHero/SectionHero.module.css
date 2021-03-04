@@ -39,6 +39,9 @@
 
 .heroContent {
   margin: 0 24px 0 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 
   @media (--viewportMedium) {
     margin: 0 7.5vw 0 7.5vw;
@@ -60,7 +63,15 @@
 
 .heroMainTitle {
   @apply --marketplaceHeroTitleFontStyles;
+
+  font-family: 'work sans', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  /* font-weight: bold; */
+  letter-spacing: 0;
+
   color: var(--matterColorLight);
+  margin-right: 0;
+  margin-top:150px;
 
   composes: animation;
   animation-delay: 0.5s;
@@ -73,6 +84,7 @@
 .heroSubTitle {
   @apply --marketplaceH4FontStyles;
 
+  font-size: 1.5em;
   color: var(--matterColorLight);
   margin: 0 0 32px 0;
 

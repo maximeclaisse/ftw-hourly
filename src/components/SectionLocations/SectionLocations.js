@@ -11,6 +11,10 @@ import css from './SectionLocations.module.css';
 import nyImage from './images/ny-yogi.jpg';
 import laImage from './images/la-yogi.jpg';
 import sfImage from './images/sf-yogi.jpg';
+import bayonneImage from './images/bayonne.jpg';
+import parisImage from './images/paris.jfif';
+import hendayeImage from './images/hendaye.jpg';
+import stJeanImage from './images/stjean.jpg';
 
 class LocationImage extends Component {
   render() {
@@ -51,19 +55,19 @@ const SectionLocations = props => {
       </div>
       <div className={css.locations}>
         {locationLink(
-          'New York',
-          nyImage,
-          '?address=New%20York%20City%2C%20New%20York%2C%20USA&bounds=40.917576401307%2C-73.7008392055224%2C40.477399%2C-74.2590879797556'
+          'Bayonne',
+          bayonneImage,
+          '?address=Bayonne%2C%20Pyrénées-Atlantiques%2C%20France&bounds=43.518974%2C-1.418087%2C43.452072%2C-1.504866'
         )}
         {locationLink(
-          'Los Angeles',
-          laImage,
-          '?address=Los%20Angeles%2C%20California%2C%20USA&bounds=34.161440999758%2C-118.121305008073%2C33.9018913203336%2C-118.521456965901'
+          'Hendaye',
+          hendayeImage,
+          '?address=Hendaye%2C%20Pyrénées-Atlantiques%2C%20France&bounds=43.38509%2C-1.731871%2C43.342154%2C-1.789155'
         )}
         {locationLink(
-          'San Francisco',
-          sfImage,
-          '?address=San%20Francisco%2C%20California%2C%20USA&bounds=37.8324430069081%2C-122.354995082683%2C37.6044780500533%2C-122.517910874663'
+          'Saint-Jean-de-Luz',
+          stJeanImage,
+          '?address=Saint-Jean-de-Luz%2C%20Pyrénées-Atlantiques%2C%20France&bounds=43.42264%2C-1.597611%2C43.365076%2C-1.668996'
         )}
       </div>
     </div>

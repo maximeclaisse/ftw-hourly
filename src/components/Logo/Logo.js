@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import IconLogo from './IconLogo';
+// import LogoImage from './mskz-logo-pink.png'
+import LogoImage from './MSKZ.png'
 import css from './Logo.module.css';
+
 
 const Logo = props => {
   const { className, format, ...rest } = props;
@@ -13,12 +16,16 @@ const Logo = props => {
   // <img className={className} src={LogoImage} alt={config.siteTitle} {...rest} />
 
   return (
-    <IconLogo
-      className={format === 'desktop' ? className : mobileClasses}
-      format={format}
-      {...rest}
-    />
+    <img className={className} src={LogoImage} {...rest} />
   );
+
+  // return (
+  //   <IconLogo
+  //     className={format === 'desktop' ? className : mobileClasses}
+  //     format={format}
+  //     {...rest}
+  //   />
+  // );
 };
 
 const { oneOf, string } = PropTypes;
