@@ -8,9 +8,10 @@ import { FormattedMessage } from '../../util/reactIntl';
 import { findOptionsForSelectFilter } from '../../util/search';
 import { propTypes } from '../../util/types';
 import config from '../../config';
-import { Button, FieldBoolean, FieldCheckboxGroup, Form } from '../../components';
+import { Button, FieldBoolean, FieldCheckboxGroup, FieldRadioButton, Form } from '../../components';
 
 import css from './EditListingInstrumentsForm.module.css';
+import { transitionsToRequested } from '../../util/transaction';
 
 const EditListingInstrumentsFormComponent = props => (
   <FinalForm
@@ -18,6 +19,7 @@ const EditListingInstrumentsFormComponent = props => (
     mutators={{ ...arrayMutators }}
     render={formRenderProps => {
       const {
+        intl,
         disabled,
         ready,
         rootClassName,
@@ -53,20 +55,39 @@ const EditListingInstrumentsFormComponent = props => (
       const instrumentProvidedName = "instrumentProvided"
       const instrumentProvidedOptions = findOptionsForSelectFilter('instrumentProvided', filterConfig);
 
+      intl.formatMessage({ id: 'Instruments.drums' })
 
-      console.log(props)
 
+      const options = findOptionsForSelectFilter('musicInstruments', filterConfig).map(e => {
+        e.label = intl.formatMessage({ id: `Instruments.${e.key}` })
+        return e
+      }).sort((a, b) => (a.label > b.label) ? 1 : -1);
 
-      const options = findOptionsForSelectFilter('musicInstruments', filterConfig);
       return (
-        <Form className={classes} onSubmit={handleSubmit}>
+        <Form className={classes} onSubmit={handleSubmit} >
           {errorMessage}
           {errorMessageShowListing}
 
           <FieldCheckboxGroup className={css.instruments} id={name} name={name} options={options} />
 
-          <p>Instrument provided ?</p>
-          <FieldBoolean placeholder="Select a value" id={instrumentProvidedName} name={instrumentProvidedName} />
+          
+
+          <div className={css.instruments}>
+            <FormattedMessage id="EditListingInstrumentsForm.instrumentProvided" />
+            <FieldRadioButton
+              id={`${"id"}-option-id1`}
+              name={instrumentProvidedName}
+              label={intl.formatMessage({ id: "EditListingInstrumentsForm.instrumentProvidedTrue" })}
+              value="true"
+            />
+            <FieldRadioButton
+              id={`${"id"}-option-id2`}
+              name={instrumentProvidedName}
+              label={intl.formatMessage({ id: "EditListingInstrumentsForm.instrumentProvidedFalse" })}
+              value="false"
+            />
+          </div>
+          
 
           <Button
             className={css.submitButton}

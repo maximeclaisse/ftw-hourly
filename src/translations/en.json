@@ -1123,5 +1123,8 @@
   "UserNav.contactDetailsPage": "Account settings",
   "ListingPage.instrumentsTitle": "Instruments",
   "SectionInstruments.title": "Or browse by instruments",
-  "ListingPage.levelTitle": "Level"
+  "ListingPage.levelTitle": "Level",
+  "Instruments.piano": "Piano",
+  "Instruments.drums": "Drums",
+  "Instruments.violin": "Violin"
 }

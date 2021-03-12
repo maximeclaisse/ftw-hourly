@@ -47,19 +47,20 @@ const EditListingDescriptionPanel = props => {
   );
 
   const certificateOptions = findOptionsForSelectFilter('certificate', config.custom.filters);
+  const methodOptions = findOptionsForSelectFilter('method', config.custom.filters);
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
       <EditListingDescriptionForm
         className={css.form}
-        initialValues={{ title, description, certificate: publicData.certificate }}
+        initialValues={{ title, description, certificate: publicData.certificate, method: publicData.method }}
         saveActionMsg={submitButtonText}
         onSubmit={values => {
-          const { title, description, certificate } = values;
+          const { title, description, certificate, method } = values;
           const updateValues = {
             title: title.trim(),
             description,
-            publicData: { certificate },
+            publicData: { certificate, method },
           };
 
           onSubmit(updateValues);
@@ -71,6 +72,7 @@ const EditListingDescriptionPanel = props => {
         updateInProgress={updateInProgress}
         fetchErrors={errors}
         certificateOptions={certificateOptions}
+        methodOptions={methodOptions}
       />
     </div>
   );

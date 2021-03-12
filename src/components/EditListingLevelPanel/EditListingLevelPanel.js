@@ -14,6 +14,7 @@ const FEATURES_NAME = 'level';
 
 const EditListingLevelPanel = props => {
   const {
+    intl,
     rootClassName,
     className,
     listing,
@@ -54,6 +55,7 @@ const EditListingLevelPanel = props => {
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
       <EditListingLevelForm
+        intl={intl}
         className={css.form}
         name={FEATURES_NAME}
         initialValues={initialValues}

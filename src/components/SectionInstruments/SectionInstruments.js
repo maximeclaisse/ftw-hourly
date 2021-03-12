@@ -41,9 +41,10 @@ const InstrumentLink = (name, image, searchQuery) => {
 };
 
 const SectionLocations = props => {
-  const { rootClassName, className } = props;
+  const { rootClassName, className, intl } = props;
 
   const classes = classNames(rootClassName || css.root, className);
+
 
   return (
     <div className={classes}>
@@ -52,17 +53,17 @@ const SectionLocations = props => {
       </div>
       <div className={css.locations}>
         {InstrumentLink(
-          'Piano',
+          intl.formatMessage({ id: 'Instruments.piano' }),
           pianoImage,
           '?address=France&bounds=51.148409399929%2C9.66015649291518%2C41.3108229%2C-5.24227249992918&pub_musicInstruments=piano'
         )}
         {InstrumentLink(
-          'Drums',
+          intl.formatMessage({ id: 'Instruments.drums' }),
           drumsImage,
           '?address=France&bounds=51.148409399929%2C9.66015649291518%2C41.3108229%2C-5.24227249992918&pub_musicInstruments=drums'
         )}
         {InstrumentLink(
-          'Violin',
+          intl.formatMessage({ id: 'Instruments.violin' }),
           violinImage,
           '?address=France&bounds=51.148409399929%2C9.66015649291518%2C41.3108229%2C-5.24227249992918&pub_musicInstruments=violin'
         )}

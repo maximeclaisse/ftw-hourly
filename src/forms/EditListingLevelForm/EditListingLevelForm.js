@@ -17,6 +17,7 @@ const EditListingLevelFormComponent = props => (
     mutators={{ ...arrayMutators }}
     render={formRenderProps => {
       const {
+        intl,
         disabled,
         ready,
         rootClassName,
@@ -49,7 +50,11 @@ const EditListingLevelFormComponent = props => (
         </p>
       ) : null;
 
-      const options = findOptionsForSelectFilter('level', filterConfig);
+      const options = findOptionsForSelectFilter('level', filterConfig).map(e => {
+        e.label = intl.formatMessage({ id: `Levels.${e.key}` })
+        return e
+      });
+      console.log(options)
       return (
         <Form className={classes} onSubmit={handleSubmit}>
           {errorMessage}

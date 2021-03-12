@@ -107,6 +107,7 @@ const EditListingWizardTab = props => {
     availabilityExceptions,
   } = props;
 
+
   const { type } = params;
   const isNewURI = type === LISTING_PAGE_PARAM_TYPE_NEW;
   const isDraftURI = type === LISTING_PAGE_PARAM_TYPE_DRAFT;
@@ -160,6 +161,7 @@ const EditListingWizardTab = props => {
   const panelProps = tab => {
     return {
       className: css.panel,
+      intl,
       errors,
       listing,
       onChange,

@@ -145,6 +145,29 @@ export const filters = [
     },
   },
   {
+    id: 'courseLocations',
+    label: 'Course Locations',
+    type: 'SelectMultipleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_courseLocations'],
+    config: {
+      // Optional modes: 'has_all', 'has_any'
+      // https://www.sharetribe.com/api-reference/marketplace.html#extended-data-filtering
+      searchMode: 'has_any',
+
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for this web app's UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        { key: 'online', label: 'Online' },
+        { key: 'student', label: 'Student\'s place' },
+        { key: 'teacher', label: 'Teacher\'s place' },
+        { key: 'other', label: 'Other' },
+      ],
+    },
+  },
+  {
     id: 'certificate',
     label: 'Certificate',
     type: 'SelectSingleFilter',
@@ -162,6 +185,27 @@ export const filters = [
         { key: 'individual', label: 'Amateur' },
         { key: 'pro', label: 'Professional musician' },
         { key: 'teacher', label: 'Registered teacher' },
+      ],
+    },
+  },
+  {
+    id: 'method',
+    label: 'method',
+    type: 'SelectSingleFilter',
+    group: 'secondary',
+    queryParamNames: ['pub_method'],
+    config: {
+      // "key" is the option you see in Flex Console.
+      // "label" is set here for the UI only.
+      // Note: label is not added through the translation files
+      // to make filter customizations a bit easier.
+      options: [
+        // { key: 'none', label: 'None', hideFromFilters: true, hideFromListingInfo: true },
+        // { key: '200h', label: 'Registered yoga teacher 200h' },
+        // { key: '500h', label: 'Registered yoga teacher 500h' },
+        { key: 'oral', label: 'Oral' },
+        { key: 'solfege', label: 'Solfège' },
+        { key: 'tabs', label: 'Tablatures' },
       ],
     },
   },

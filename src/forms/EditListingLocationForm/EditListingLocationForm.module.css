@@ -76,6 +76,15 @@
   }
 }
 
+
+.courseLocations {
+  margin-top: 0px
+}
+
+.courseLocationsLabel {
+  font-weight:bold !important;
+}
+
 .submitButton {
   margin-top: auto;
   margin-bottom: 24px;

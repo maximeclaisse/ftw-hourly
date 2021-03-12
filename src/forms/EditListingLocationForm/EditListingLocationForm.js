@@ -3,6 +3,8 @@ import { bool, func, shape, string } from 'prop-types';
 import { compose } from 'redux';
 import { Form as FinalForm } from 'react-final-form';
 import { intlShape, injectIntl, FormattedMessage } from '../../util/reactIntl';
+import { findOptionsForSelectFilter } from '../../util/search';
+import arrayMutators from 'final-form-arrays';
 import classNames from 'classnames';
 import { propTypes } from '../../util/types';
 import {
@@ -10,7 +12,8 @@ import {
   autocompletePlaceSelected,
   composeValidators,
 } from '../../util/validators';
-import { Form, LocationAutocompleteInputField, Button, FieldTextInput } from '../../components';
+import config from '../../config';
+import { Form, LocationAutocompleteInputField, Button, FieldTextInput, FieldCheckboxGroup } from '../../components';
 
 import css from './EditListingLocationForm.module.css';
 
@@ -19,6 +22,7 @@ const identity = v => v;
 export const EditListingLocationFormComponent = props => (
   <FinalForm
     {...props}
+    mutators={{ ...arrayMutators }}
     render={formRenderProps => {
       const {
         className,
@@ -32,6 +36,7 @@ export const EditListingLocationFormComponent = props => (
         updated,
         updateInProgress,
         fetchErrors,
+        filterConfig,
         values,
       } = formRenderProps;
 
@@ -76,6 +81,12 @@ export const EditListingLocationFormComponent = props => (
       const submitInProgress = updateInProgress;
       const submitDisabled = invalid || disabled || submitInProgress;
 
+      const options = findOptionsForSelectFilter('courseLocations', filterConfig).map(e => {
+        e.label = intl.formatMessage({ id: `Locations.${e.key}` })
+        return e
+      });
+
+
       return (
         <Form className={classes} onSubmit={handleSubmit}>
           {errorMessage}
@@ -108,6 +119,15 @@ export const EditListingLocationFormComponent = props => (
             placeholder={buildingPlaceholderMessage}
           />
 
+          <div className={css.courseLocations}>
+            <p className={css.courseLocationsLabel}>
+              <FormattedMessage id="EditListingLocationForm.courseLocations" />
+            </p>
+            <FieldCheckboxGroup className={css.instruments} id="courseLocations" name="courseLocations" options={options} />
+          </div>
+
+          
+
           <Button
             className={css.submitButton}
             type="submit"
@@ -126,6 +146,7 @@ export const EditListingLocationFormComponent = props => (
 EditListingLocationFormComponent.defaultProps = {
   selectedPlace: null,
   fetchErrors: null,
+  filterConfig: config.custom.filters
 };
 
 EditListingLocationFormComponent.propTypes = {

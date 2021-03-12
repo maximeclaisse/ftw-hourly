@@ -14,6 +14,7 @@ const FEATURES_NAME = 'musicInstruments';
 
 const EditListingInstrumentsPanel = props => {
   const {
+    intl,
     rootClassName,
     className,
     listing,
@@ -49,19 +50,19 @@ const EditListingInstrumentsPanel = props => {
 
   const musicInstruments = publicData && publicData.musicInstruments;
   const instrumentProvided = publicData && publicData.instrumentProvided;
-  const initialValues = { musicInstruments };
+  const initialValues = { musicInstruments, instrumentProvided };
 
   return (
     <div className={classes}>
       <h1 className={css.title}>{panelTitle}</h1>
       <EditListingInstrumentsForm
+        intl={intl}
         className={css.form}
         name={FEATURES_NAME}
         instrumentProvided={instrumentProvided}
         initialValues={initialValues}
         onSubmit={values => {
           const { musicInstruments = [], instrumentProvided } = values;
-          console.log(instrumentProvided)
 
           const updatedValues = {
             publicData: { musicInstruments, instrumentProvided },

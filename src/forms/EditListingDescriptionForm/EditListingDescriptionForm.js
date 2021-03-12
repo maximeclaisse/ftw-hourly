@@ -19,6 +19,7 @@ const EditListingDescriptionFormComponent = props => (
     render={formRenderProps => {
       const {
         certificateOptions,
+        methodOptions,
         className,
         disabled,
         ready,
@@ -113,6 +114,13 @@ const EditListingDescriptionFormComponent = props => (
             id="certificate"
             name="certificate"
             certificateOptions={certificateOptions}
+            intl={intl}
+          />
+
+          <CustomCertificateSelectFieldMaybe
+            id="method"
+            name="method"
+            certificateOptions={methodOptions}
             intl={intl}
           />
 
