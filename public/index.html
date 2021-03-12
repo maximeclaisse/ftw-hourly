@@ -74,12 +74,6 @@
         font-style: normal;
       }
 
-      @font-face {
-        font-family: 'monument extended';
-        src: url('/fonts/MonumentExtended-Ultrabold.otf') format('opentype');
-        font-weight: 800;
-        font-style: normal;
-      }
 
       @font-face {
         font-family: 'work sans';
@@ -181,8 +175,7 @@
         var robotoSemibold = new FontFaceObserver('roboto', { weight: 600 });
         var robotoBold = new FontFaceObserver('roboto', { weight: 700 });
 
-        var monumentRegular = new FontFaceObserver('monument', { weight: 400 });
-        var rmonumentBold = new FontFaceObserver('monument', { weight: 700 });
+        var workSansUltra = new FontFaceObserver('work sans', { weight: 900 });
 
         var fontLoadingTimeout = 5000;
 
@@ -195,8 +188,7 @@
           robotoMedium.load(null, fontLoadingTimeout),
           robotoSemibold.load(null, fontLoadingTimeout),
           robotoBold.load(null, fontLoadingTimeout),
-          monumentRegular.load(null, fontLoadingTimeout),
-          rmonumentBold.load(null, fontLoadingTimeout)
+          workSansUltra.load(null, fontLoadingTimeout)
         ])
           .then(function () {
             document.documentElement.classList.add("fontsLoaded");
